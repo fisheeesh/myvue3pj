@@ -1,7 +1,8 @@
 <template>
-  <h1 ref="greet">{{ title }}</h1>
-  <button @click="onClickHandler">Click</button>
-  <Modal/>
+  <h1>{{title}}</h1>
+  <input type="text" ref="name">
+  <button @click="onclickHandler">Click</button>
+  <Modal :header="header" :content="content" :theme="theme"/>
 </template>
 
 <script>
@@ -9,22 +10,23 @@ import Modal from './components/Modal.vue'
 export default {
   data(){
     return{
-      title : 'Hello World'
+      title : 'My Vue 3 Practise',
+      header: 'Login Success',
+      content: 'Welcome to our website',
+      theme: 'success'
     }
   },
   methods:{
-    onClickHandler(){
-      this.$refs.greet.textContent = 'Hello!'
+    onclickHandler(){
+      this.$refs.name.textContent = 'Hello'
     }
   },
   components:{
     Modal
   }
-};
+}
 </script>
 
 <style scoped>
-h1{
-  color:red;
-}
+
 </style>
