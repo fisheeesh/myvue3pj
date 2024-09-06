@@ -1,8 +1,9 @@
 <template>
   <div class="bckdrop" @click.self="closeModal">
     <div class="modal" :class="{success:theme==='success', danger:theme === 'danger'}">
-      <h1>{{header}}</h1>
-      <p>{{content}}</p>
+      <!-- if we want to pass html template, we use slot -->
+      <slot> Default </slot>
+      <slot name="buttons"/>
     </div>
   </div>
 </template>
@@ -13,8 +14,6 @@ export default {
    * Props are used to pass data from parent to child component
    */
   props:[
-    'header',
-    'content',
     'theme'
   ],
   methods:{
@@ -51,7 +50,7 @@ p{
   color: white;
 }
 .danger{
-  background-color: crimson;
-  color: white;
+  background-color: white;
+  color: black;
 }
 </style>
