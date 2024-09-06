@@ -1,9 +1,9 @@
 <template>
   <div class="bckdrop" @click.self="closeModal">
-    <div class="modal" :class="{success:theme==='success', danger:theme === 'danger'}">
+    <div class="modal" :class="{ success: theme === 'success', danger: theme === 'danger' }">
       <!-- if we want to pass html template, we use slot -->
       <slot> Default </slot>
-      <slot name="buttons"/>
+      <slot name="buttons" />
     </div>
   </div>
 </template>
@@ -13,43 +13,45 @@ export default {
   /**
    * Props are used to pass data from parent to child component
    */
-  props:[
-    'theme'
-  ],
-  methods:{
-    closeModal(){
+  props: ["theme"],
+  methods: {
+    closeModal() {
       /**
        * If we want to change sth in parent, we can emit an event which will be use in parent component
        */
-      this.$emit('close')
-    }
-  }
-}
+      this.$emit("close");
+    },
+  },
+};
 </script>
 
 <style scoped>
-.bckdrop{
+.bckdrop {
   position: fixed;
-  background-color: rgba(0, 0, 0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   top: 0;
   width: 100%;
   height: 100%;
 }
-.modal{
+
+.modal {
   margin: 100px auto;
   background-color: white;
   width: 400px;
   padding: 20px;
   border-radius: 10px;
 }
-p{
+
+p {
   font-style: normal;
 }
-.success{
-  background-color: green;
-  color: white;
+
+.success {
+  background-color: white;
+  color: black;
 }
-.danger{
+
+.danger {
   background-color: white;
   color: black;
 }

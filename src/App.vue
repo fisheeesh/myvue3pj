@@ -16,9 +16,23 @@
       </template>
     </Modal>
   </teleport>
+
+  <div v-if="showModal1" >
+    <Modal theme="success" @close="showModal1 = !showModal1">
+      <h1>Not a Member?</h1>
+      <p>Register and become a part of our family</p>
+      <template v-slot:buttons>
+        <div class="btns">
+          <span class="no" @click="showModal1 = !showModal1" style="background: lightskyblue;">LogIn</span>
+          <span class="yes" style="background: lightskyblue;">SignUp</span>
+        </div>
+      </template>
+    </Modal>
+  </div>
   <button @click="showModal = !showModal">
     {{ showModal ? "Hide Modal" : "Show Modal" }}
   </button>
+  <button @click="showModal1 = !showModal1">{{ showModal1 ? 'Close' : 'Open' }}</button>
 </template>
 
 <script>
@@ -31,6 +45,7 @@ export default {
       content: "Are you sure you want to Log Out?",
       theme: "danger",
       showModal: false,
+      showModal1: false,
     };
   },
   methods: {
@@ -45,16 +60,22 @@ export default {
 </script>
 
 <style scoped>
+h1{
+  color: red;
+}
 p {
   font-style: normal;
 }
-.btns{
+
+.btns {
   display: flex;
   width: 100%;
 }
-span{
+
+span {
   transition: background 0.3s;
 }
+
 .no {
   flex: 1;
   padding: 10px 0px;
@@ -64,6 +85,7 @@ span{
   border-radius: 10px;
   text-align: center;
 }
+
 .yes {
   text-align: center;
   padding: 10px 0px;
@@ -75,12 +97,22 @@ span{
   border-radius: 10px;
   background-color: red;
 }
-.no:hover{
+
+.no:hover {
   cursor: pointer;
   background: rgb(111, 110, 110);
 }
-.yes:hover{
+
+.yes:hover {
   cursor: pointer;
   background: rgb(239, 10, 10);
+}
+button{
+  padding: 10px 15px;
+  margin: 10px;
+  border: none;
+  background-color: lightskyblue;
+  color: white;
+  border-radius: 30px;
 }
 </style>
