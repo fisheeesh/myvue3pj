@@ -2,7 +2,7 @@
   <h1>{{ title }}</h1>
   <!-- <input type="text" ref="name">
   <button @click="onclickHandler">Click</button> -->
-  <div v-if="showModal">
+  <teleport to=".modal" v-if="showModal">
     <!-- If we want to pass data from parent to child component we use props -->
     <!-- If we want to pass data through attributes, we have to bind it with v-bind: or : -->
     <Modal :theme="theme" @close="showModal = !showModal">
@@ -10,12 +10,12 @@
       <p>{{ content }}</p>
       <template v-slot:buttons>
         <div class="btns">
-          <span class="no">NO</span>
+          <span class="no" @click="showModal = !showModal">NO</span>
           <span class="yes">YES</span>
         </div>
       </template>
     </Modal>
-  </div>
+  </teleport>
   <button @click="showModal = !showModal">
     {{ showModal ? "Hide Modal" : "Show Modal" }}
   </button>
@@ -52,6 +52,9 @@ p {
   display: flex;
   width: 100%;
 }
+span{
+  transition: background 0.3s;
+}
 .no {
   flex: 1;
   padding: 10px 0px;
@@ -71,5 +74,13 @@ p {
   color: white;
   border-radius: 10px;
   background-color: red;
+}
+.no:hover{
+  cursor: pointer;
+  background: rgb(111, 110, 110);
+}
+.yes:hover{
+  cursor: pointer;
+  background: rgb(239, 10, 10);
 }
 </style>
