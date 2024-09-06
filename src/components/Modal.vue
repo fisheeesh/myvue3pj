@@ -1,5 +1,5 @@
 <template>
-  <div class="bckdrop">
+  <div class="bckdrop" @click.self="closeModal">
     <div class="modal" :class="{success:theme==='success', danger:theme === 'danger'}">
       <h1>{{header}}</h1>
       <p>{{content}}</p>
@@ -9,11 +9,22 @@
 
 <script>
 export default {
+  /**
+   * Props are used to pass data from parent to child component
+   */
   props:[
     'header',
     'content',
     'theme'
-  ]
+  ],
+  methods:{
+    closeModal(){
+      /**
+       * If we want to change sth in parent, we can emit an event which will be use in parent component
+       */
+      this.$emit('close')
+    }
+  }
 }
 </script>
 
